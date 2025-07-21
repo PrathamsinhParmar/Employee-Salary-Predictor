@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Salary Classification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background: #f3f7fb; }
+        .container { max-width: 450px; margin: 2em auto; background: #fff; border-radius: 11px; box-shadow: 0 2px 12px #b3d1ee40; padding: 2em 2.5em; }
+        h2 { color: #2d507c; margin-bottom: 0.7em; }
+        input, select { width: 100%; padding: 0.5em; border-radius: 6px; margin-bottom: 1em; border: 1px solid #dee7fa;}
+        button { width: 100%; font-size: 1.1em; background: #417eda; color: #fff; border: none; font-family: 'Outfit', sans-serif; border-radius: 7px; padding: 0.7em; margin-top: 1em;}
+        .result { margin: 1em 0 0 0; padding: 0.8em; background: #4ca649; color: #fff; border-radius: 9px; font-size: 1.1em; }
+        .data-preview { margin-top: 1em; background: white; border-radius: 8px; padding: 1em; font-size: 0.98em; }
+        .nav { margin-bottom: 1em; text-align:right; }
+        .nav a { color:#417eda; text-decoration:none; font-size:1em; font-weight:600;}
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="nav"><a href="/batch">Batch Prediction</a></div>
+    <h2>💼 Employee Salary Classification App</h2>
+    <p>Predict whether an employee earns <b>&gt;50K</b> or <b>&le;50K</b> based on input features.</p>
+
+    <form method="POST" autocomplete="off">
+        <label>Age</label>
+        <input type="number" name="age" min="18" max="65" value="30" required>
+
+        <label>Workclass</label>
+        <select name="workclass" required>
+            <option>Private</option>
+            <option>Self-emp-not-inc</option>
+            <option>Self-emp-inc</option>
+            <option>Federal-gov</option>
+            <option>Local-gov</option>
+            <option>State-gov</option>
+            <option>Without-pay</option>
+            <option>Never-worked</option>
+        </select>
+
+        <!-- <label>fnlwgt</label>
+        <input type="number" name="fnlwgt" min="0" value="100000" required> -->
+
+        <label>Education Number</label>
+        <input type="number" name="educational-num" min="1" max="16" value="10" required>
+
+        <!-- <label>Marital Status</label>
+        <select name="marital-status" required>
+            <option>Married-civ-spouse</option>
+            <option>Divorced</option>
+            <option>Never-married</option>
+            <option>Separated</option>
+            <option>Widowed</option>
+            <option>Married-spouse-absent</option>
+        </select> -->
+
+        <label>Job Role</label>
+        <select name="occupation">
+            <option>Tech-support</option>
+            <option>Craft-repair</option>
+            <option>Other-service</option>
+            <option>Sales</option>
+            <option>Exec-managerial</option>
+            <option>Prof-specialty</option>
+            <option>Handlers-cleaners</option>
+            <option>Machine-op-inspct</option>
+            <option>Adm-clerical</option>
+            <option>Farming-fishing</option>
+            <option>Transport-moving</option>
+            <option>Priv-house-serv</option>
+            <option>Protective-serv</option>
+            <option>Armed-Forces</option>
+        </select>
+
+        <label>Hours per week</label>
+        <input type="number" name="hours_per_week" min="1" max="120" value="40" required>
+        <label>Years of Experience</label>
+        <input type="number" name="experience" min="0" max="40" value="5" required>
+
+        <button name="predict_single" type="submit">Predict Salary Class</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result">✅ Prediction: {{ prediction }}</div>
+    {% endif %}
+
+    {% if input_df is not none %}
+        <div class="data-preview">
+            <strong>🔎 Output Data:</strong><br>
+            <pre>{{ input_df.to_json() | safe }}</pre>
+        </div>
+    {% endif %}
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul style="color:#d32f2f;">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</div>
+</body>
+</html>
