@@ -15,7 +15,11 @@ A web application for predicting whether an employee earns **>50K** or **≤50K*
 
 ## Demo
 
-![App Screenshot](screenshot.png) <!-- Add your screenshot file if available -->
+![App Screenshot](images/image1.jpg) <!-- Add your screenshot file if available -->
+![App Screenshot](images/image2.jpg)
+![App Screenshot](images/image3.jpg)
+![App Screenshot](images/image4.jpg)
+![App Screenshot](images/image5.jpg)
 
 ---
 
@@ -156,4 +160,4 @@ This project is for educational purposes. Please check the license before commer
 
 ## Author
 
-- Your Name (your.email@example.com)
+- Prathamsinh Parmar (prathamsinhparmar0@gmail.com)
